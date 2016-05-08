@@ -1,14 +1,12 @@
-#include<Windows.h>
-#include<iostream>
-#include <SDL/SDL.h>
-#include<GL/glew.h>
+#include "GameEngine.h"
+
 
 
 int main(int argc,char** argv)
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
+	GameEngine gameEngine;
 
-	SDL_Quit();
+	gameEngine.run();
 
 	return EXIT_SUCCESS;
 }
