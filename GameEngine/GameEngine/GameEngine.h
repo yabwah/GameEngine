@@ -6,7 +6,7 @@
 #include<string>
 
 #include "Sprite.h"
-
+#include"Errors.h"
 
 enum class GameState{PLAY,EXIT};
 

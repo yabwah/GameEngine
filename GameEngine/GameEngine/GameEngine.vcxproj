@@ -148,13 +148,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Errors.cpp" />
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="GLSLProgram.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Errors.h" />
     <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="GLSLProgram.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Sprite.h" />
   </ItemGroup>

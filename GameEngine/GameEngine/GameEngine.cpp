@@ -1,15 +1,6 @@
 #include "GameEngine.h"
 
 
-void fatalError(std::string a_err)
-{
-	std::cout << a_err << std::endl;
-
-	//cleanup
-	SDL_Quit();
-	system("pause");
-
-}
 GameEngine::GameEngine():m_window(nullptr),m_screenWidth(1024),m_screenHeight(768), m_gameState(GameState::PLAY)
 {
 }
