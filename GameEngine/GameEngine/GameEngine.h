@@ -7,6 +7,7 @@
 
 #include "Sprite.h"
 #include"Errors.h"
+#include"GLSLProgram.h"
 
 enum class GameState{PLAY,EXIT};
 
@@ -26,10 +27,15 @@ private:
 	GameState m_gameState;
 
 	Sprite m_sprite;
+	
+	GLSLProgram m_colorProgram;
+
+	float m_time;
 
 	void initSystems();
 	void gameLoop();
 	void processInput();
 	void drawGame();
+	void initShaders();
 };
 

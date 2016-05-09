@@ -1,8 +1,11 @@
 #pragma once
 
 #include<GL/glew.h>
+#include<stddef.h>
 
 #include "Position.h"
+#include "Vertex.h"
+
 
 class Sprite
 {

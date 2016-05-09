@@ -1,7 +1,7 @@
 #include "GameEngine.h"
 
 
-GameEngine::GameEngine():m_window(nullptr),m_screenWidth(1024),m_screenHeight(768), m_gameState(GameState::PLAY)
+GameEngine::GameEngine():m_window(nullptr),m_screenWidth(1024),m_screenHeight(768), m_gameState(GameState::PLAY),m_time(0)
 {
 }
 
@@ -14,7 +14,7 @@ void GameEngine::run()
 {
 	initSystems();
 
-	m_sprite.init({-1,-1},1,1);
+	m_sprite.init({-1,-1},2,2);
 
 	gameLoop();
 }
@@ -47,6 +47,8 @@ void GameEngine::initSystems()
 
 	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 
+	initShaders();
+
 }
 
 void GameEngine::gameLoop()
@@ -54,6 +56,9 @@ void GameEngine::gameLoop()
 	while (m_gameState != GameState::EXIT)
 	{
 		processInput();
+
+		m_time += 0.01;
+
 		drawGame();
 	}
 
@@ -85,7 +90,22 @@ void GameEngine::drawGame()
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	m_colorProgram.use();
+
+	GLuint timeLocation = m_colorProgram.getUniformLocation("time");
+	glUniform1f(timeLocation,m_time);
+
 	m_sprite.draw();
 
+	m_colorProgram.unUse();
+
 	SDL_GL_SwapWindow(m_window);
+}
+
+void GameEngine::initShaders()
+{
+	m_colorProgram.compileshaders("Shaders/colorShading.vert", "Shaders/colorShading.frag");
+	m_colorProgram.addAttribute("vertexPosition");
+	m_colorProgram.addAttribute("vertexColor"); 
+	m_colorProgram.linkShaders();
 }

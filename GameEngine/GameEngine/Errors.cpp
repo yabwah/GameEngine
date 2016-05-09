@@ -8,5 +8,6 @@ void fatalError(std::string a_err)
 	//cleanup
 	SDL_Quit();
 	system("pause");
+	exit(EXIT_FAILURE);
 
 }

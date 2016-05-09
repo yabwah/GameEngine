@@ -27,26 +27,44 @@ void Sprite::init(Position a_pos, float a_width, float a_height)
 		glGenBuffers(1, &m_vboID);
 	}
 
-	Position vertexData[6];
 
-	vertexData[0].x = m_pos.x + m_width;
-	vertexData[0].y = m_pos.y + m_height;
+	Vertex vertexData[6];
 
-	vertexData[1].x = m_pos.x;
-	vertexData[1].y = m_pos.y + m_height;
+	vertexData[0].position.x = m_pos.x + m_width;
+	vertexData[0].position.y = m_pos.y + m_height;
 
-	vertexData[2].x = m_pos.x;
-	vertexData[2].y = m_pos.y;
+	vertexData[1].position.x = m_pos.x;
+	vertexData[1].position.y = m_pos.y + m_height;
+				
+	vertexData[2].position.x = m_pos.x;
+	vertexData[2].position.y = m_pos.y;
+				
+	vertexData[3].position.x = m_pos.x + m_width;
+	vertexData[3].position.y = m_pos.y + m_height;
+				
+	vertexData[4].position.x = m_pos.x + m_width;
+	vertexData[4].position.y = m_pos.y;
+				
+	vertexData[5].position.x = m_pos.x;
+	vertexData[5].position.y = m_pos.y;
 
-	vertexData[3].x = m_pos.x + m_width;
-	vertexData[3].y = m_pos.y + m_height;
+	for (int i = 0; i < 6; i++)
+	{
+		vertexData[i].color.r = 255;
+		vertexData[i].color.g = 0;
+		vertexData[i].color.b = 255;
+		vertexData[i].color.a = 255;
+	}
 
-	vertexData[4].x = m_pos.x + m_width;
-	vertexData[4].y = m_pos.y;
+	vertexData[1].color.r = 255;
+	vertexData[1].color.g = 255;
+	vertexData[1].color.b = 0;
+	vertexData[1].color.a = 255;
 
-	vertexData[5].x = m_pos.x;
-	vertexData[5].y = m_pos.y;
-
+	vertexData[4].color.r = 0;
+	vertexData[4].color.g = 255;
+	vertexData[4].color.b = 255;
+	vertexData[4].color.a = 255;
 
 	glBindBuffer(GL_ARRAY_BUFFER , m_vboID);
 
@@ -63,7 +81,9 @@ void Sprite::draw()
 
 	glEnableVertexAttribArray(0);
 
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex,position));
+
+	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE,GL_TRUE, sizeof(Vertex), (void *)offsetof(Vertex, color));
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
