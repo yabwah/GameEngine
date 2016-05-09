@@ -5,6 +5,9 @@
 #include<GL/glew.h>
 #include<string>
 
+#include "Sprite.h"
+
+
 enum class GameState{PLAY,EXIT};
 
 class GameEngine
@@ -21,6 +24,8 @@ private:
 	int m_screenWidth;
 	int m_screenHeight;
 	GameState m_gameState;
+
+	Sprite m_sprite;
 
 	void initSystems();
 	void gameLoop();

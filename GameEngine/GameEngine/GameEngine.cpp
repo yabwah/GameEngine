@@ -23,6 +23,8 @@ void GameEngine::run()
 {
 	initSystems();
 
+	m_sprite.init({-1,-1},1,1);
+
 	gameLoop();
 }
 
@@ -92,18 +94,7 @@ void GameEngine::drawGame()
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glEnableClientState(GL_COLOR_ARRAY);
-
-	glBegin(GL_TRIANGLES);
-
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glVertex2f(0.0f, 0.0f);
-	glVertex2f(0.0f, 500.0f);
-	glVertex2f(500.0f, 500.0f);
-
-	glEnd();
-
-
+	m_sprite.draw();
 
 	SDL_GL_SwapWindow(m_window);
 }
